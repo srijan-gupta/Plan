@@ -122,19 +122,14 @@ body.profile-mode #profiles-container{display:block!important}
 #db thead tr.column-filters th:nth-child(-n+7){z-index:51!important}
 #db thead tr.group-bands th:first-child{position:sticky!important;left:0!important;z-index:53!important}
 
-/* Draggable header edges control column widths; the first seven stay frozen. */
 
-#db tr:not(.group-bands) > :is(th,td):nth-child(n) {
-  min-width:0!important;max-width:none!important;overflow-wrap:anywhere;
-}
+/* Adjustable frozen identity columns. Keep the table's natural layout. */
+#db tr:not(.group-bands) > :is(th,td):nth-child(-n+7) {overflow-wrap:anywhere;}
 #db thead tr:nth-child(2) th {top:var(--band-height,36px);}
 #db thead tr.column-filters th {top:var(--band-plus-header,78px);}
 #db .column-filters .ms>button {min-width:0!important;max-width:100%;}
-#db thead tr:nth-child(2) th {position:sticky;}
-#db .column-resizer {
-  position:absolute;right:0;top:0;bottom:0;width:10px;cursor:col-resize;
-  touch-action:none;z-index:2;
-}
+#db .column-resizer {position:absolute;right:0;top:0;bottom:0;width:10px;
+ cursor:col-resize;touch-action:none;z-index:2;}
 #db .column-resizer:hover,#db .column-resizer.dragging {background:#3676ac88;}
 body.resizing-columns {cursor:col-resize!important;user-select:none!important;}
 </style><style>
@@ -357,69 +352,57 @@ rows.forEach(r=>{
   refreshFinalScore(r);
 });
 
-// Keep the table's 58 columns aligned while allowing each header edge to drag.
-(function setupColumnResize(){
+
+// Resize the seven frozen columns without changing the table's natural layout.
+(function setupFrozenResize(){
   const table=document.getElementById('db');
-  const headers=[...table.querySelectorAll('thead tr:nth-child(2) th')];
-  const savedKey='phdMasterColumnWidthsV1';
-  const compact=[40,46,116,90,145,155,95];
-  const minimum=44;
-  const measured=headers.map(h=>Math.max(minimum,Math.round(h.getBoundingClientRect().width)));
-  const defaults=measured.map((width,i)=>i<compact.length?compact[i]:width);
+  const headers=[...table.querySelectorAll('thead tr:nth-child(2) th')].slice(0,7);
+  const key='phdMasterFrozenWidthsV2';
+  const defaults=[40,46,116,90,145,155,95], minimum=40;
   let stored;
-  try {stored=JSON.parse(localStorage.getItem(savedKey));} catch (_) {}
-  let widths=Array.isArray(stored)&&stored.length===headers.length
-    ? defaults.map((v,i)=>Number.isFinite(+stored[i])?Math.max(minimum,Math.min(900,+stored[i])):v)
+  try {stored=JSON.parse(localStorage.getItem(key));} catch (_) {}
+  let widths=Array.isArray(stored)&&stored.length===7
+    ? defaults.map((v,i)=>Number.isFinite(+stored[i])?Math.max(minimum,Math.min(500,+stored[i])):v)
     : defaults.slice();
-  const group=table.insertBefore(document.createElement('colgroup'),table.firstChild);
-  const cols=headers.map(()=>group.appendChild(document.createElement('col')));
-  table.style.setProperty('table-layout','fixed','important');
-  const stickyCells=Array.from({length:7},(_,i)=>[...table.querySelectorAll(
+  const cells=headers.map((_,i)=>[...table.querySelectorAll(
     `thead tr:nth-child(2) th:nth-child(${i+1}), thead tr.column-filters th:nth-child(${i+1}), tbody td:nth-child(${i+1})`
   )]);
-  function apply(){
-    widths.forEach((width,i)=>{cols[i].style.width=width+'px';});
-    table.style.width=widths.reduce((a,b)=>a+b,0)+'px';
-    let left=0;
-    stickyCells.forEach((cells,i)=>{
-      cells.forEach(cell=>{
-        cell.style.setProperty('left',left+'px','important');
-        cell.style.setProperty('width',widths[i]+'px','important');
-        cell.style.setProperty('min-width',widths[i]+'px','important');
-        cell.style.setProperty('max-width',widths[i]+'px','important');
-      });
-      left+=widths[i];
-    });
-    updateHeaderOffsets();
-  }
   function updateHeaderOffsets(){
     const band=table.querySelector('thead tr.group-bands').getBoundingClientRect().height;
     const label=table.querySelector('thead tr:nth-child(2)').getBoundingClientRect().height;
     table.style.setProperty('--band-height',band+'px');
     table.style.setProperty('--band-plus-header',(band+label)+'px');
   }
+  function apply(){
+    let left=0;
+    cells.forEach((column,i)=>{
+      column.forEach(cell=>{
+        cell.style.setProperty('left',left+'px','important');
+        for(const prop of ['width','min-width','max-width'])
+          cell.style.setProperty(prop,widths[i]+'px','important');
+      });
+      left+=widths[i];
+    });
+    updateHeaderOffsets();
+  }
   apply();
   new ResizeObserver(updateHeaderOffsets).observe(table.querySelector('thead tr:nth-child(2)'));
   headers.forEach((header,i)=>{
     const handle=document.createElement('span');
-    handle.className='column-resizer';
-    handle.title='Drag to resize column';
-    handle.setAttribute('aria-label','Resize '+header.textContent.trim()+' column');
+    handle.className='column-resizer';handle.title='Drag to resize frozen column';
     header.appendChild(handle);
     handle.addEventListener('pointerdown',e=>{
       e.preventDefault();e.stopPropagation();
       handle.setPointerCapture(e.pointerId);
-      handle.classList.add('dragging');
-      document.body.classList.add('resizing-columns');
+      handle.classList.add('dragging');document.body.classList.add('resizing-columns');
       const start=e.clientX,initial=widths[i];
-      const move=event=>{widths[i]=Math.max(minimum,Math.min(900,initial+event.clientX-start));apply();};
+      const move=event=>{widths[i]=Math.max(minimum,Math.min(500,initial+event.clientX-start));apply();};
       const stop=()=>{
         handle.removeEventListener('pointermove',move);
         handle.removeEventListener('pointerup',stop);
         handle.removeEventListener('pointercancel',stop);
-        handle.classList.remove('dragging');
-        document.body.classList.remove('resizing-columns');
-        localStorage.setItem(savedKey,JSON.stringify(widths));
+        handle.classList.remove('dragging');document.body.classList.remove('resizing-columns');
+        localStorage.setItem(key,JSON.stringify(widths));
       };
       handle.addEventListener('pointermove',move);
       handle.addEventListener('pointerup',stop);
@@ -428,7 +411,7 @@ rows.forEach(r=>{
     handle.addEventListener('click',e=>e.stopPropagation());
   });
   document.getElementById('reset-column-widths').addEventListener('click',()=>{
-    widths=defaults.slice();localStorage.removeItem(savedKey);apply();
+    widths=defaults.slice();localStorage.removeItem(key);apply();
   });
 })();
 </script>
