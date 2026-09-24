@@ -121,6 +121,22 @@ body.profile-mode #profiles-container{display:block!important}
 #db thead tr:nth-child(2) th:nth-child(-n+7){z-index:52!important}
 #db thead tr.column-filters th:nth-child(-n+7){z-index:51!important}
 #db thead tr.group-bands th:first-child{position:sticky!important;left:0!important;z-index:53!important}
+
+/* Draggable header edges control column widths; the first seven stay frozen. */
+#db { table-layout:fixed!important; }
+#db tr:not(.group-bands) > :is(th,td):nth-child(n) {
+  min-width:0!important;max-width:none!important;overflow-wrap:anywhere;
+}
+#db thead tr:nth-child(2) th {top:var(--band-height,36px);}
+#db thead tr.column-filters th {top:var(--band-plus-header,78px);}
+#db .column-filters .ms>button {min-width:0!important;max-width:100%;}
+#db thead tr:nth-child(2) th {position:sticky;}
+#db .column-resizer {
+  position:absolute;right:0;top:0;bottom:0;width:10px;cursor:col-resize;
+  touch-action:none;z-index:2;
+}
+#db .column-resizer:hover,#db .column-resizer.dragging {background:#3676ac88;}
+body.resizing-columns {cursor:col-resize!important;user-select:none!important;}
 </style><style>
 /* Financials */
 #db thead tr.group-bands th:nth-last-child(2){background:#315b63!important;color:#fff!important}
@@ -182,7 +198,7 @@ td.attention-reason{min-width:380px!important;max-width:560px!important;white-sp
 </div>
 <div class="card"><strong>Destination roles: optical systems architecture</strong>
 <p>For coherent or IM/DD optical links, seek end-to-end impairment and link models, DSP/FEC, measured-link correlation and architecture decisions. For optical I/O, seek electrical–photonic co-design, SerDes, package and signal integrity, plus lab validation. Check the actual thesis scope with the PI.</p></div><h2>Database — 105 candidate rows</h2>
-<div class="controls"><button id="clear" type="button">Clear filters</button><button id="export" type="button">Export saved data</button><button id="importbtn" type="button">Import saved data</button><input accept=".json" id="importfile" style="display:none" type="file"><span class="small" id="count"></span></div>
+<div class="controls"><button id="clear" type="button">Clear filters</button><button id="reset-column-widths" type="button">Reset column widths</button><button id="export" type="button">Export saved data</button><button id="importbtn" type="button">Import saved data</button><input accept=".json" id="importfile" style="display:none" type="file"><span class="small" id="count"></span></div>
 <div class="card"><strong>Research-stack axes</strong><p>The old broad “Applied maths” and “Engineering” columns are now decomposed so the intersection is visible: <b>Physics → modelling → inference → algorithms → computational optimization → systems implementation → experiment/measurement → impact → long horizon</b>.</p><p><b>Full-stack fit</b> is the “BAM” signal: a derived indicator that deliberately penalizes a missing layer rather than rewarding a high average. It is preliminary and should be replaced with evidence from recent theses/projects during diligence.</p></div><div class="card"><strong>Coverage-first, not prestige-first</strong>
 <p>This version expands the search using bottom-up research-activity queries (real-time implementation, FPGA/GPU, diagnostics/control, inference, HW/SW and electronic-photonic co-design), not “top university” lists. <b>Admission band is deliberately separate from institutional visibility/prestige.</b> Reach/Target/Safety is only a rough application-planning heuristic: PhD admission depends heavily on PI funding, openings, fit and applicant pool, so “Safety” never means guaranteed.</p>
 <p><b>Advisor / learning confidence</b> is evidence confidence, not fame: thesis coherence, technical depth, student ownership, supervision/alumni evidence. Legacy rows default to “Unknown / needs thesis review” rather than inventing confidence. Industry collaboration and named partners are separate columns.</p></div><div class="card"><strong>Pass 3 — advisor-learning diligence</strong>
@@ -340,6 +356,80 @@ rows.forEach(r=>{
   });
   refreshFinalScore(r);
 });
+
+// Keep the table's 58 columns aligned while allowing each header edge to drag.
+(function setupColumnResize(){
+  const table=document.getElementById('db');
+  const headers=[...table.querySelectorAll('thead tr:nth-child(2) th')];
+  const savedKey='phdMasterColumnWidthsV1';
+  const compact=[40,46,116,90,145,155,95];
+  const minimum=44;
+  const measured=headers.map(h=>Math.max(minimum,Math.round(h.getBoundingClientRect().width)));
+  const defaults=measured.map((width,i)=>i<compact.length?compact[i]:width);
+  let stored;
+  try {stored=JSON.parse(localStorage.getItem(savedKey));} catch (_) {}
+  let widths=Array.isArray(stored)&&stored.length===headers.length
+    ? defaults.map((v,i)=>Number.isFinite(+stored[i])?Math.max(minimum,Math.min(900,+stored[i])):v)
+    : defaults.slice();
+  const group=table.insertBefore(document.createElement('colgroup'),table.firstChild);
+  const cols=headers.map(()=>group.appendChild(document.createElement('col')));
+  const stickyCells=Array.from({length:7},(_,i)=>[...table.querySelectorAll(
+    `thead tr:nth-child(2) th:nth-child(${i+1}), thead tr.column-filters th:nth-child(${i+1}), tbody td:nth-child(${i+1})`
+  )]);
+  function apply(){
+    widths.forEach((width,i)=>{cols[i].style.width=width+'px';});
+    table.style.width=widths.reduce((a,b)=>a+b,0)+'px';
+    let left=0;
+    stickyCells.forEach((cells,i)=>{
+      cells.forEach(cell=>{
+        cell.style.setProperty('left',left+'px','important');
+        cell.style.setProperty('width',widths[i]+'px','important');
+        cell.style.setProperty('min-width',widths[i]+'px','important');
+        cell.style.setProperty('max-width',widths[i]+'px','important');
+      });
+      left+=widths[i];
+    });
+    updateHeaderOffsets();
+  }
+  function updateHeaderOffsets(){
+    const band=table.querySelector('thead tr.group-bands').getBoundingClientRect().height;
+    const label=table.querySelector('thead tr:nth-child(2)').getBoundingClientRect().height;
+    table.style.setProperty('--band-height',band+'px');
+    table.style.setProperty('--band-plus-header',(band+label)+'px');
+  }
+  apply();
+  new ResizeObserver(updateHeaderOffsets).observe(table.querySelector('thead tr:nth-child(2)'));
+  headers.forEach((header,i)=>{
+    const handle=document.createElement('span');
+    handle.className='column-resizer';
+    handle.title='Drag to resize column';
+    handle.setAttribute('aria-label','Resize '+header.textContent.trim()+' column');
+    header.appendChild(handle);
+    handle.addEventListener('pointerdown',e=>{
+      e.preventDefault();e.stopPropagation();
+      handle.setPointerCapture(e.pointerId);
+      handle.classList.add('dragging');
+      document.body.classList.add('resizing-columns');
+      const start=e.clientX,initial=widths[i];
+      const move=event=>{widths[i]=Math.max(minimum,Math.min(900,initial+event.clientX-start));apply();};
+      const stop=()=>{
+        handle.removeEventListener('pointermove',move);
+        handle.removeEventListener('pointerup',stop);
+        handle.removeEventListener('pointercancel',stop);
+        handle.classList.remove('dragging');
+        document.body.classList.remove('resizing-columns');
+        localStorage.setItem(savedKey,JSON.stringify(widths));
+      };
+      handle.addEventListener('pointermove',move);
+      handle.addEventListener('pointerup',stop);
+      handle.addEventListener('pointercancel',stop);
+    });
+    handle.addEventListener('click',e=>e.stopPropagation());
+  });
+  document.getElementById('reset-column-widths').addEventListener('click',()=>{
+    widths=defaults.slice();localStorage.removeItem(savedKey);apply();
+  });
+})();
 </script>
 </main><div id="profiles-container" style="display:none"><section class="profile-page" id="profile-federico-felici">
 <button class="back-btn" type="button">← Back to database</button>
