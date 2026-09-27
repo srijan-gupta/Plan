@@ -7,7 +7,7 @@ This is the compact, stable filter. New observations update this framework; they
 A direction should make the answer to these questions feel obvious:
 
 1. **Worth solving / meaningful impact** — does somebody genuinely care whether this problem is solved, and would solving it create scientific understanding, technological capability, or real-system value?
-2. **Concrete unresolved problem** — is there a recognizable bottleneck, missing capability, or important unknown rather than open-ended phenomenon hunting?
+2. **Problem-statement driven, not gap-hunting** — start from an important concrete problem and attempt to solve it. The attempt should expose the bottleneck, missing capability, or unknown that becomes the research question. An unexplored/novel literature gap has essentially no value by itself; ask: **what problem forced us to need this knowledge, and what becomes easier if we obtain it?**
 3. **Long-horizon depth** — can I own and investigate the problem deeply for months/years, accumulating expertise instead of repeatedly resetting context?
 4. **Objective feedback** — can I tell whether I am making progress: better prediction, explanation, control, performance, uncertainty, capability, or experimental agreement?
 5. **Ownership + closure** — do I own a substantial question and have enough time to pursue hypotheses, fail, debug, iterate, and reach meaningful closure?
@@ -17,6 +17,12 @@ A direction should make the answer to these questions feel obvious:
 9. **Worthwhile even if wrong** — after years of serious work, does the project still yield something valuable if the central hypothesis fails: important fundamental understanding, removal/clarification of a technology-blocking uncertainty, or deep transferable R&D capability?
 10. **Environment enables the work** — smart/constructive advisor or technical leadership, autonomy, psychological safety, reasonable boundaries, low enough context switching, and genuine room for deep work.
 11. **Transferable career capital** — does the work build durable technical capability and preserve credible advanced-R&D exits? C/C++/optimization/systems skills are valuable assets, but not the identity or objective by themselves.
+
+## Problem → gap rule
+
+> **Problem → attempted solution / current understanding → exposed blocker → research question → targeted investigation → new knowledge/capability → feed it back into solving the problem.**
+
+Reject the reverse pattern as a default research strategy: **literature → hunt for an unstudied corner → manufacture a research gap → publish because it is novel.** Novelty may be necessary for publication, but it is not the objective or evidence that the work is worth doing. The research gap should normally be **pulled out by the problem**, not chosen first and justified afterward.
 
 ## Interpretation
 
@@ -34,7 +40,7 @@ A hard five-year C++ problem can pass depth/ownership/objective-feedback tests a
 
 ## One-line reminder
 
-> **Important problem. Concrete unresolved bottleneck. Years of ownership. Objective feedback. Deep physical/scientific content. Use whatever methods are needed. Leave with meaningful understanding/capability even if the hypothesis fails.**
+> **Important problem. Let solving it expose the unresolved bottleneck. Years of ownership. Objective feedback. Deep physical/scientific content. Use whatever methods are needed. Leave with meaningful understanding/capability even if the hypothesis fails.**
 
 Use this as a rejection filter, not a personality essay: **“Yes, obviously this survives”** or **“No — it fails criterion X.”**
 
