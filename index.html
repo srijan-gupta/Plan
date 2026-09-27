@@ -320,6 +320,11 @@ function filt(){
   let rank=0;rows.forEach(r=>r.querySelector('.filtered-rank').textContent=r.style.display!=='none'?++rank:'');
   fs.forEach(f=>{let a=sel(f),b=document.querySelector(`.ms[data-field="${f}"]>button`);b.textContent=!a.length?`${L[f]}: All ▾`:a.length===1?`${L[f]}: ${a[0]} ▾`:`${L[f]}: ${a.length} selected ▾`});
   [['baserange','Base overall score'],['finalrange','Final overall score']].forEach(([f,l])=>{let a=scoreSelected(f),b=document.querySelector(`.ms[data-field="${f}"]>button`);b.textContent=`${l}: ${!a.length?'All':a.length===1?a[0]:a.length+' selected'} ▾`});
+  document.querySelectorAll('tr.field-section,tr.pool-section').forEach(h=>{
+    const field=h.dataset.trackSection;
+    const visible=rows.some(r=>broadField(r.dataset.track)===field&&r.style.display!=='none');
+    h.style.display=visible?'':'none';
+  });
   document.querySelector('#count').textContent=`${n} / ${rows.length} rows`;
 }
 function deco(r){
@@ -332,10 +337,19 @@ function save(r){let d=JSON.parse(localStorage.getItem('phdMasterUserData')||'{}
 function restore(){let d=JSON.parse(localStorage.getItem('phdMasterUserData')||'{}');rows.forEach(r=>{if(d[r.dataset.key]){r.querySelector('.my-tier').value=d[r.dataset.key].tier||'Unrated';r.querySelector('.comment').value=d[r.dataset.key].comment||''}deco(r)})}
 
 const funnelOrder={Active:0,Watch:1,Deprioritized:2,'Struck off':3};
+function broadField(track){
+  if(track.startsWith('Fusion /')) return 'Fusion / HEDP';
+  if(track==='Optical communications') return 'Optical communications';
+  if(track==='Optical I/O / compute') return 'Optical I/O / compute';
+  if(track==='Physics of computing / quantum photonics') return 'Quantum photonics / physics of computing';
+  if(track==='Computational physical systems / SciML') return 'Computational physical systems / SciML';
+  if(track==='Algorithms / architecture / implementation') return 'Algorithms / architecture / implementation';
+  return track;
+}
 function fieldStateData(){return JSON.parse(localStorage.getItem('phdFieldFunnel')||'{}')}
-function fieldState(track){return fieldStateData()[track]||'Active'}
-function setFieldState(track,state){
-  const d=fieldStateData();d[track]=state;localStorage.setItem('phdFieldFunnel',JSON.stringify(d));
+function fieldState(field){return fieldStateData()[field]||'Active'}
+function setFieldState(field,state){
+  const d=fieldStateData();d[field]=state;localStorage.setItem('phdFieldFunnel',JSON.stringify(d));
   renderFieldFunnel();organizeByField();filt();
 }
 function attentionRank(r){
@@ -346,7 +360,7 @@ function rowScore(r){const e=r.querySelector('.final-score');return e?parseFloat
 function organizeByField(){
   const body=document.querySelector('#db tbody');
   body.querySelectorAll('tr.field-section,tr.pool-section').forEach(x=>x.remove());
-  const groups={}; rows.forEach(r=>(groups[r.dataset.track]??=[]).push(r));
+  const groups={}; rows.forEach(r=>{const f=broadField(r.dataset.track);(groups[f]??=[]).push(r)});
   Object.keys(groups).sort((a,b)=>funnelOrder[fieldState(a)]-funnelOrder[fieldState(b)]||a.localeCompare(b)).forEach(track=>{
     const state=fieldState(track), all=groups[track];
     all.sort((a,b)=>{
@@ -364,7 +378,7 @@ function organizeByField(){
 }
 function renderFieldFunnel(){
   const box=document.querySelector('#field-funnel'); if(!box)return;
-  const groups={};rows.forEach(r=>(groups[r.dataset.track]??=[]).push(r));
+  const groups={};rows.forEach(r=>{const f=broadField(r.dataset.track);(groups[f]??=[]).push(r)});
   box.innerHTML=Object.keys(groups).sort((a,b)=>funnelOrder[fieldState(a)]-funnelOrder[fieldState(b)]||a.localeCompare(b)).map(track=>{
     const state=fieldState(track),active=groups[track].filter(r=>r.querySelector('.my-tier').value!=='Cut').length;
     return '<div class="field-chip"><b>'+track+'</b><span class="small">'+active+' surfaced / '+groups[track].length+' total</span><select data-track="'+track+'">'+['Active','Watch','Deprioritized','Struck off'].map(s=>'<option '+(s===state?'selected':'')+'>'+s+'</option>').join('')+'</select></div>'
@@ -417,6 +431,7 @@ rows.forEach(r=>{
   });
   refreshFinalScore(r);
 });
+organizeByField();filt();
 
 
 // Resize the seven frozen columns without changing the table's natural layout.
