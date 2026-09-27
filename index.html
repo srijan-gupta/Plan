@@ -199,7 +199,7 @@ td.attention-reason{min-width:380px!important;max-width:560px!important;white-sp
 <div class="card"><strong>Intellectual-flavour guider — applied-maths inclination (soft preference)</strong>
 <p>Positive inclination: you are especially drawn to <b>signals / Fourier methods, probability &amp; statistics, estimation / inverse problems, linear algebra, optimization, quantitative physical modelling and related computation</b>. This is an intellectual-flavour preference, <b>not a hard project filter</b>. PDE-heavy mathematical work is less naturally attractive to you, but should not rule out an excellent problem. Likewise, a project does not need inference or DSP to qualify. Use this axis as a guider/tiebreaker after problem importance, unresolved gap, research depth, advisor/environment and likely outcome.</p>
 <p><b>Examples that strongly express this inclination:</b> <b>Darko Zibar / DTU MLiPS</b> — statistical signal processing, state-space/Bayesian inference, phase/noise estimation, DSP/ML tied to optical experiments; <b>Matthew Hole / ANU</b> — ITER synthetic diagnostics, noise, signal processing and Bayesian inference for fusion-plasma modes; <b>MPI-IPP integrated diagnostic / equilibrium inference work</b> — Bayesian combination of heterogeneous plasma measurements and physical reconstruction. Treat the latter two as fusion leads requiring PI/project-level diligence before promotion into the final shortlist.</p>
-<p class="small"><b>Funnel, not pruning:</b> preserve every credible candidate in the database. Maintain roughly <b>5–10 active names/projects per field</b> in the surfaced shortlist, while moving weaker/currently-misaligned candidates to a retained background pool with an explicit reason (e.g. device/fabrication-heavy, PDE-heavy, weak problem ownership, inference incidental, no current project). Never delete solely because a candidate is not active today. Use Field/track + Holistic attention + problem/research-depth evidence as the main funnel; Inference/estimation + Modelling/simulation + related maths columns are secondary preference signals, not eligibility gates.</p>
+<p class="small"><b>Funnel, not pruning:</b> preserve every credible candidate in the database. Maintain roughly <b>5–10 active names/projects per field</b> in the surfaced shortlist, while moving weaker/currently-misaligned candidates to a retained background pool with an explicit reason (e.g. device/fabrication-heavy, PDE-heavy, weak problem ownership, inference incidental, no current project). Never delete solely because a candidate is not active today. Use Field/track + derived Holistic attention + problem/research-depth evidence as the main funnel; Holistic attention is recalculated from the underlying research parameters rather than maintained independently; Inference/estimation + Modelling/simulation + related maths columns are secondary preference signals, not eligibility gates.</p>
 </div><div class="card"><strong>Fusion/HEDP — current directed search, not generic “fusion”</strong>
 <p><b>Mission thread:</b> contribute to fusion as a physicist by attacking a concrete physics/measurement bottleneck. <b>Intellectual-flavour inclination:</b> quantitative modelling and applied maths — especially signals/Fourier methods, probability/statistics, estimation/inference, linear algebra/optimization and computation — are attractive when naturally useful to the problem. This is a soft guider, not a requirement; PDE-heavy maths is less naturally attractive but is not a veto.</p>
 <p><b>Active lanes:</b> (1) <b>ICF/HEDP experimental physics</b> — laser/plasma experiments where shocks, instability/mix, transport, radiation, magnetic fields or other unresolved mechanisms limit predictive capability; favour experiment↔model discrepancy loops. (2) <b>Magnetic-fusion diagnostics / integrated inference</b> — reconstruct plasma state/modes from noisy heterogeneous diagnostics, synthetic diagnostics, Bayesian/inverse methods and experiment/model comparison. (3) <b>Edge/exhaust/transport</b> only where the project gives strong diagnostic/model/inference ownership and a concrete reactor bottleneck. (4) <b>Laser/plasma diagnostics &amp; spectroscopy</b> where signals, reconstruction and physical inference are scientifically consequential.</p>
@@ -455,6 +455,47 @@ document.querySelectorAll('.back-btn').forEach(b=>b.addEventListener('click',()=
 }));
 
 
+
+const attentionWeights={
+  impact:1.35, unknown:1.15, matterchain:1.05, ownership:1.20, sciout:1.00, horizon:0.90,
+  confidence:0.85, physics:0.55, model:0.30, experiment:0.35, transfer:0.35,
+  techfit:0.25, inference:0.12, algorithms:0.10, optimization:0.10, systems:0.10, optionality:0.18
+};
+function qualitativeScore(v){
+  v=(v||'').toLowerCase();
+  if(v.includes('very strong'))return 5;
+  if(v.includes('very high'))return 5;
+  if(v.includes('deeply'))return 5;
+  if(v.includes('strong evidence'))return 4.5;
+  if(v==='high'||v.includes(' high'))return 4;
+  if(v.includes('moderate')||v.includes('medium'))return 3;
+  if(v.includes('preliminary')||v.includes('project-level')||v.includes('unknown')||v.includes('verify'))return 2.5;
+  if(v.includes('low'))return 2;
+  if(v==='s')return 5;if(v==='a')return 4.3;if(v==='b')return 3.3;if(v==='c')return 2.3;
+  return 3;
+}
+function derivedAttention(r){
+  let sum=0,w=0;
+  Object.entries(attentionWeights).forEach(([k,wt])=>{sum+=qualitativeScore(r.dataset[k])*wt;w+=wt});
+  const raw=sum/w; // 1–5
+  // Evidence quality limits confidence in a top-tier label; it does not erase intrinsic fit.
+  const ev=qualitativeScore(r.dataset.evidence);
+  const adjusted=raw-(ev<3?0.18:0);
+  const tier=adjusted>=4.45?'Highest':adjusted>=4.05?'High':adjusted>=3.55?'Medium':adjusted>=3.05?'Watch':'Low';
+  return {score:adjusted,tier};
+}
+function refreshAttention(r){
+  const a=derivedAttention(r),cell=r.querySelector('.attention-tier');
+  if(!cell)return;
+  cell.innerText=a.tier;
+  r.dataset.attention=a.tier;
+  r.dataset.attentionscore=a.score.toFixed(2);
+  cell.title='Derived attention score '+a.score.toFixed(2)+'/5 from problem importance, unresolved-gap clarity, ownership, outcomes, horizon, advisor confidence and secondary fit signals.';
+  cell.className='attention-tier '+(a.tier==='Highest'?'att-highest':a.tier==='High'?'att-high':a.tier==='Medium'?'att-medium':'');
+}
+function refreshAllAttention(){rows.forEach(refreshAttention)}
+refreshAllAttention();
+
 function refreshFinalScore(r){
   const base=parseFloat(r.querySelector('.base-score').innerText)||0;
   const adj=parseFloat(r.querySelector('.score-adjust').value)||0;
@@ -473,6 +514,7 @@ rows.forEach(r=>{
   sel.addEventListener('change',()=>{
     localStorage.setItem(key,sel.value);
     refreshFinalScore(r);
+    refreshAttention(r);
     rebuildScoreMenu('finalrange','.final-score','Final overall score'); filt();
   });
   refreshFinalScore(r);
