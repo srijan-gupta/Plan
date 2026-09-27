@@ -73,6 +73,23 @@ Use the existing labels consistently:
 
 Never promote to Deeply researched merely because a paragraph was written.
 
+## Hard filter: problem-directed research
+
+Research must have a concrete problem-solving direction. The preferred structure is:
+
+> important real problem → identify the blocking knowledge/physics gap → use existing knowledge plus targeted research to understand/bridge the gap → produce actionable understanding, improved prediction/control, or a solution/capability.
+
+This axis must remain present even for fundamental-physics projects. Fundamental depth is welcome, but open-ended study of an interesting phenomenon without a clear problem it helps resolve is a weaker fit.
+
+For every serious lab/project, explicitly document:
+- **Problem being faced:** who/what system or technology is constrained, and by what?
+- **Blocking gap:** what knowledge, mechanism, model, measurement, or capability is missing?
+- **Research attack:** what experiments/modelling/inference/implementation are used to close the gap?
+- **Payoff:** what becomes more predictable, controllable, buildable, or scientifically resolved if successful?
+- **Direction test:** would this concrete problem still provide a clear reason for the next experiment/simulation when the original hypothesis fails?
+
+Treat weak or unclear problem-directedness as a material fit penalty even when the underlying physics is interesting or prestigious.
+
 ## PhD value filters
 
 A project should strongly satisfy at least one:
