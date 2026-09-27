@@ -215,7 +215,11 @@ td.attention-reason{min-width:380px!important;max-width:560px!important;white-sp
 <div class="card"><strong>Field funnel</strong>
 <p class="funnel-note">Organize without deleting. Set an entire field to Active, Watch, Deprioritized or Struck off; it moves as a section but remains fully searchable/filterable. Within each field, Top/Strong/Maybe stay surfaced and Cut is retained in a lower background subsection.</p>
 <div id="field-funnel" class="field-funnel"></div></div>
-<div class="controls"><button id="clear" type="button">Clear filters</button><button id="reset-column-widths" type="button">Reset column widths</button><button id="export" type="button">Export saved data</button><button id="importbtn" type="button">Import saved data</button><input accept=".json" id="importfile" style="display:none" type="file"><span class="small" id="count"></span></div>
+<div class="controls"><button id="clear" type="button">Clear filters</button>
+<label>Sort by <select id="sort-primary"></select></label><select id="sort-primary-dir"><option value="desc">High → Low / Z → A</option><option value="asc">Low → High / A → Z</option></select>
+<label>Then by <select id="sort-secondary"><option value="">None</option></select></label><select id="sort-secondary-dir"><option value="desc">High → Low / Z → A</option><option value="asc">Low → High / A → Z</option></select>
+<button id="apply-sort" type="button">Apply sort</button><button id="reset-sort" type="button">Reset sort</button>
+<button id="reset-column-widths" type="button">Reset column widths</button><button id="export" type="button">Export saved data</button><button id="importbtn" type="button">Import saved data</button><input accept=".json" id="importfile" style="display:none" type="file"><span class="small" id="count"></span></div>
 <div class="card"><strong>Research-stack axes</strong><p>The old broad “Applied maths” and “Engineering” columns are now decomposed so the intersection is visible: <b>Physics → modelling → inference → algorithms → computational optimization → systems implementation → experiment/measurement → impact → long horizon</b>.</p><p><b>Full-stack fit</b> is the “BAM” signal: a derived indicator that deliberately penalizes a missing layer rather than rewarding a high average. It is preliminary and should be replaced with evidence from recent theses/projects during diligence.</p></div><div class="card"><strong>Coverage-first, not prestige-first</strong>
 <p>This version expands the search using bottom-up research-activity queries (real-time implementation, FPGA/GPU, diagnostics/control, inference, HW/SW and electronic-photonic co-design), not “top university” lists. <b>Admission band is deliberately separate from institutional visibility/prestige.</b> Reach/Target/Safety is only a rough application-planning heuristic: PhD admission depends heavily on PI funding, openings, fit and applicant pool, so “Safety” never means guaranteed.</p>
 <p><b>Advisor / learning confidence</b> is evidence confidence, not fame: thesis coherence, technical depth, student ownership, supervision/alumni evidence. Legacy rows default to “Unknown / needs thesis review” rather than inventing confidence. Industry collaboration and named partners are separate columns.</p></div><div class="card"><strong>Pass 3 — advisor-learning diligence</strong>
@@ -395,7 +399,49 @@ document.onclick=()=>document.querySelectorAll('.ms').forEach(x=>x.classList.rem
 rows.forEach(r=>{r.querySelector('.my-tier').onchange=()=>{save(r);menu('mytier');organizeByField();renderFieldFunnel();filt()};r.querySelector('.comment').oninput=()=>save(r)});
 document.querySelector('#export').onclick=()=>{let a=document.createElement('a'),b=new Blob([localStorage.getItem('phdMasterUserData')||'{}'],{type:'application/json'});a.href=URL.createObjectURL(b);a.download='phd_master_my_notes.json';a.click()};
 document.querySelector('#importbtn').onclick=()=>document.querySelector('#importfile').click();document.querySelector('#importfile').onchange=e=>{let rd=new FileReader();rd.onload=()=>{try{JSON.parse(rd.result);localStorage.setItem('phdMasterUserData',rd.result);restore();menu('mytier');filt()}catch{alert('Invalid backup')}};rd.readAsText(e.target.files[0])};
-let sd={};document.querySelectorAll('#db thead tr:first-child th').forEach((th,i)=>{th.classList.add('sortable');th.onclick=()=>{sd[i]=!sd[i];[...rows].sort((a,b)=>a.children[i].innerText.trim().localeCompare(b.children[i].innerText.trim(),undefined,{numeric:true})*(sd[i]?1:-1)).forEach(r=>r.parentNode.appendChild(r));filt()}});
+
+const sortHeaders=[...document.querySelectorAll('#db thead tr:nth-child(2) th')];
+const sortableColumns=sortHeaders.map((th,i)=>({i,label:th.innerText.trim()})).filter(x=>x.i!==0&&x.label&&x.label!=='Deep profile'&&x.label!=='My comments');
+function sortValue(r,i){
+  if(sortHeaders[i].innerText.trim()==='My category')return ({Top:4,Strong:3,Maybe:2,Unrated:1,Cut:0}[r.querySelector('.my-tier').value]??1);
+  const t=r.children[i].innerText.trim(), n=parseFloat(t.replace(/[^0-9.+-]/g,''));
+  if(['Base overall score','Adjustment','Final overall score','h-index','Pay ₹ LPA (net)','Living cost ₹ LPA','Est. annual margin ₹ LPA'].includes(sortHeaders[i].innerText.trim())&&!Number.isNaN(n))return n;
+  const rank={'Highest':7,'Very high':6,'Very strong':6,'High':5,'Strong':5,'Mid-high':4,'Medium':3,'Promising':3,'Low–Medium':2,'Low':1};
+  return rank[t]??t.toLowerCase();
+}
+function cmpVal(a,b){
+  if(typeof a==='number'&&typeof b==='number')return a-b;
+  return String(a).localeCompare(String(b),undefined,{numeric:true});
+}
+function applyExplicitSort(){
+  const p=parseInt(document.querySelector('#sort-primary').value),s=document.querySelector('#sort-secondary').value;
+  const pd=document.querySelector('#sort-primary-dir').value==='asc'?1:-1,sd=document.querySelector('#sort-secondary-dir').value==='asc'?1:-1;
+  const groups={};rows.forEach(r=>{const field=broadField(r.dataset.track);(groups[field]??=[]).push(r)});
+  Object.keys(groups).forEach(field=>groups[field].sort((a,b)=>{
+    let v=cmpVal(sortValue(a,p),sortValue(b,p))*pd;
+    if(!v&&s!=='')v=cmpVal(sortValue(a,parseInt(s)),sortValue(b,parseInt(s)))*sd;
+    return v;
+  }));
+  const body=document.querySelector('#db tbody');
+  Object.keys(groups).sort((a,b)=>funnelOrder[fieldState(a)]-funnelOrder[fieldState(b)]||a.localeCompare(b)).forEach(field=>{
+    const head=[...body.querySelectorAll('tr.field-section')].find(x=>x.dataset.trackSection===field);if(head)body.appendChild(head);
+    const surf=[...body.querySelectorAll('tr.pool-section')].find(x=>x.dataset.trackSection===field&&!x.classList.contains('background'));if(surf)body.appendChild(surf);
+    groups[field].filter(r=>r.querySelector('.my-tier').value!=='Cut').forEach(r=>body.appendChild(r));
+    const bg=[...body.querySelectorAll('tr.pool-section.background')].find(x=>x.dataset.trackSection===field);if(bg)body.appendChild(bg);
+    groups[field].filter(r=>r.querySelector('.my-tier').value==='Cut').forEach(r=>body.appendChild(r));
+  });
+  filt();
+}
+function initSortControls(){
+  const p=document.querySelector('#sort-primary'),s=document.querySelector('#sort-secondary');
+  const opts=sortableColumns.map(x=>'<option value="'+x.i+'">'+x.label+'</option>').join('');
+  p.innerHTML=opts;s.innerHTML='<option value="">None</option>'+opts;
+  const final=sortableColumns.find(x=>x.label==='Final overall score');if(final)p.value=final.i;
+  document.querySelector('#apply-sort').onclick=applyExplicitSort;
+  document.querySelector('#reset-sort').onclick=()=>{if(final)p.value=final.i;s.value='';document.querySelector('#sort-primary-dir').value='desc';document.querySelector('#sort-secondary-dir').value='desc';organizeByField();filt()};
+}
+let sd={};sortHeaders.forEach((th,i)=>{if(i===0)return;th.classList.add('sortable');th.title='Click to sort this column within each field';th.onclick=()=>{document.querySelector('#sort-primary').value=i;document.querySelector('#sort-primary-dir').value=sd[i]?'desc':'asc';sd[i]=!sd[i];applyExplicitSort()}});
+initSortControls();
 restore();renderFieldFunnel();organizeByField();filt();
 
 
