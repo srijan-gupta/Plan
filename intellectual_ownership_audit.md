@@ -31,6 +31,9 @@ Final-shortlist promotion should normally require Demonstrated or Strong signal,
 | tilmann-lunt | Tilmann Lunt / ASDEX Upgrade | **Project-dependent / unverified** | Medium | Alternative-divertor/X-point-radiator program is strongly problem-pulled and reacts to unexpected experimental observations. | Need a real Lunt-supervised student trajectory; program quality does not prove student autonomy. |
 | andrea-kritcher | Andrea Kritcher / LLNL NIF | **Project-dependent / route issue** | Medium | Integrated ICF program is an exceptional problem-solving reference with model→shot→diagnosis→redesign feedback. | LLNL is not a conventional PhD-supervision destination for this search; university student ownership must be assessed through actual route/project. |
 
+| milo-popovi | Miloš Popović / BU | **Strong signal** | Medium-high | BU records multiple completed PhDs under Popović spanning electro-optic transducers/modulators, electronic-photonic quantum systems, resonant/radiative device design, CMOS electronic-photonic systems and mm-wave systems. This breadth suggests individually substantial thesis ownership rather than one repeated characterization task. | Need thesis contribution/acknowledgement text from at least one completed student before upgrading to Demonstrated. |
+| sajjad-moazeni | Sajjad Moazeni / UW EMiT | **Strong signal / young-group caveat** | Medium | Current UW PhD students have distinct integrated-photonics/circuits/AI-hardware/quantum projects and the lab is explicitly system-integration/problem driven. | Group is young enough that completed supervised-PhD evidence is limited; do not infer advising autonomy from Moazeni's own PhD accomplishments. |
+
 ## Evidence standards / search procedure
 
 For each serious candidate:
@@ -45,6 +48,6 @@ For each serious candidate:
 ## Next audit queue
 
 Priority is current Highest/High candidates, especially:
-Gianluca Gregori; Christoph Niemann (deeper); J. Ryan Rygg; Dustin Froula (deeper); Federico Felici (deeper); Christian Koos (second thesis); Keren Bergman; Miloš Popović; Sajjad Moazeni; Leif Oxenløwe; Camille-Sophie Brès (thesis chain); Polina Bayvel (second trajectory); Seb Savory; Joseph Kahn; Peter Norreys; Peter Ossieur; Michael Faitsch/Tilmann Lunt supervision routes.
+Gianluca Gregori; Christoph Niemann (deeper); J. Ryan Rygg; Dustin Froula (deeper); Federico Felici (deeper); Christian Koos (second thesis); Keren Bergman; Miloš Popović (thesis text); Sajjad Moazeni (first completed supervised PhD when available); Leif Oxenløwe; Camille-Sophie Brès (thesis chain); Polina Bayvel (second trajectory); Seb Savory; Joseph Kahn; Peter Norreys; Peter Ossieur; Michael Faitsch/Tilmann Lunt supervision routes.
 
 This audit is deliberately incomplete until those trajectories are checked.
