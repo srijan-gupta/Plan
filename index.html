@@ -218,7 +218,7 @@ td.attention-reason{min-width:380px!important;max-width:560px!important;white-sp
 <div class="controls"><button id="clear" type="button">Clear filters</button>
 <label>Sort by <select id="sort-primary"></select></label><select id="sort-primary-dir"><option value="desc">High → Low / Z → A</option><option value="asc">Low → High / A → Z</option></select>
 <label>Then by <select id="sort-secondary"><option value="">None</option></select></label><select id="sort-secondary-dir"><option value="desc">High → Low / Z → A</option><option value="asc">Low → High / A → Z</option></select>
-<button id="apply-sort" type="button">Apply sort</button><button id="reset-sort" type="button">Reset sort</button>
+<button id="apply-sort" type="button">Apply sort</button><label>Problem-solving program <select id="program-filter"><option value="all">All / unaudited</option><option value="audited">Audited only</option><option value="strong">Strong ≥4.5</option><option value="conditional">Conditional / needs project check</option><option value="unaudited">Unaudited only</option></select></label><button id="program-rank" type="button">Rank by program</button><button id="reset-sort" type="button">Reset sort</button>
 <button id="reset-column-widths" type="button">Reset column widths</button><button id="export" type="button">Export saved data</button><button id="importbtn" type="button">Import saved data</button><input accept=".json" id="importfile" style="display:none" type="file"><span class="small" id="count"></span></div>
 <div class="card"><strong>Research-stack axes</strong><p>The old broad “Applied maths” and “Engineering” columns are now decomposed so the intersection is visible: <b>Physics → modelling → inference → algorithms → computational optimization → systems implementation → experiment/measurement → impact → long horizon</b>.</p><p><b>Full-stack fit</b> is the “BAM” signal: a derived indicator that deliberately penalizes a missing layer rather than rewarding a high average. It is preliminary and should be replaced with evidence from recent theses/projects during diligence.</p></div><div class="card"><strong>Coverage-first, not prestige-first</strong>
 <p>This version expands the search using bottom-up research-activity queries (real-time implementation, FPGA/GPU, diagnostics/control, inference, HW/SW and electronic-photonic co-design), not “top university” lists. <b>Admission band is deliberately separate from institutional visibility/prestige.</b> Reach/Target/Safety is only a rough application-planning heuristic: PhD admission depends heavily on PI funding, openings, fit and applicant pool, so “Safety” never means guaranteed.</p>
@@ -318,7 +318,7 @@ function filt(){
   rows.forEach(r=>{
     let ok=!q||r.innerText.toLowerCase().includes(q);
     fs.forEach(f=>{let a=sel(f);if(a.length&&!a.includes(rv(r,f)))ok=false});
-    if(ok)ok=scoreFilterOK(r,'baserange','.base-score')&&scoreFilterOK(r,'finalrange','.final-score');
+    if(ok)ok=scoreFilterOK(r,'baserange','.base-score')&&scoreFilterOK(r,'finalrange','.final-score')&&programFilterOK(r);
     r.style.display=ok?'':'none';if(ok)n++;
   });
   let rank=0;rows.forEach(r=>r.querySelector('.filtered-rank').textContent=r.style.display!=='none'?++rank:'');
@@ -456,6 +456,55 @@ document.querySelectorAll('.back-btn').forEach(b=>b.addEventListener('click',()=
 
 
 
+const programAudit={
+  'andrea-kritcher':{score:5.0,status:'Demonstrated',confidence:1.0},
+  'egemen-kolemen':{score:5.0,status:'Demonstrated',confidence:1.0},
+  'polina-bayvel':{score:4.8,status:'Demonstrated',confidence:0.95},
+  'keren-bergman':{score:4.8,status:'Demonstrated',confidence:0.95},
+  'christian-koos':{score:4.8,status:'Demonstrated',confidence:0.95},
+  'sajjad-moazeni':{score:4.6,status:'Strong emerging',confidence:0.85},
+  'darko-zibar':{score:4.6,status:'Strong',confidence:0.90},
+  'sergey-lebedev':{score:3.8,status:'Project-conditional',confidence:0.85},
+  'camille-sophie-br-s':{score:3.6,status:'Program coherence unverified',confidence:0.70}
+};
+function applyProgramAudit(){
+  rows.forEach(r=>{
+    const a=programAudit[r.dataset.key];
+    r.dataset.programscore=a?a.score.toFixed(1):'';
+    r.dataset.programstatus=a?a.status:'Unaudited';
+    r.dataset.programconfidence=a?a.confidence.toFixed(2):'';
+    if(a){
+      const pi=r.children[4];
+      if(pi&&!pi.querySelector('.program-badge')){
+        const b=document.createElement('div');b.className='program-badge small';
+        b.textContent='Problem-solving program: '+a.score.toFixed(1)+'/5 · '+a.status;
+        b.title='Separate from problem importance: cumulative target→bottleneck→intervention→feedback→measurable-progress audit.';
+        pi.appendChild(b);
+      }
+    }
+  });
+}
+applyProgramAudit();
+function programFilterOK(r){
+  const v=document.querySelector('#program-filter')?.value||'all',a=programAudit[r.dataset.key];
+  if(v==='all')return true;if(v==='audited')return !!a;if(v==='unaudited')return !a;
+  if(v==='strong')return !!a&&a.score>=4.5;
+  if(v==='conditional')return !!a&&a.score<4.5;
+  return true;
+}
+document.querySelector('#program-filter').addEventListener('change',filt);
+document.querySelector('#program-rank').addEventListener('click',()=>{
+  const body=document.querySelector('#db tbody'),groups={};rows.forEach(r=>{const f=broadField(r.dataset.track);(groups[f]??=[]).push(r)});
+  Object.keys(groups).forEach(f=>groups[f].sort((a,b)=>(parseFloat(b.dataset.programscore)||-1)-(parseFloat(a.dataset.programscore)||-1)||attentionRank(b)-attentionRank(a)||rowScore(b)-rowScore(a)));
+  Object.keys(groups).sort((a,b)=>funnelOrder[fieldState(a)]-funnelOrder[fieldState(b)]||a.localeCompare(b)).forEach(f=>{
+    const head=[...body.querySelectorAll('tr.field-section')].find(x=>x.dataset.trackSection===f);if(head)body.appendChild(head);
+    const surf=[...body.querySelectorAll('tr.pool-section')].find(x=>x.dataset.trackSection===f&&!x.classList.contains('background'));if(surf)body.appendChild(surf);
+    groups[f].filter(r=>r.querySelector('.my-tier').value!=='Cut').forEach(r=>body.appendChild(r));
+    const bg=[...body.querySelectorAll('tr.pool-section.background')].find(x=>x.dataset.trackSection===f);if(bg)body.appendChild(bg);
+    groups[f].filter(r=>r.querySelector('.my-tier').value==='Cut').forEach(r=>body.appendChild(r));
+  });filt();
+});
+
 const attentionWeights={
   impact:1.35, unknown:1.15, matterchain:1.05, ownership:1.20, sciout:1.00, horizon:0.90,
   confidence:0.85, physics:0.55, model:0.30, experiment:0.35, transfer:0.35,
@@ -477,7 +526,9 @@ function qualitativeScore(v){
 function derivedAttention(r){
   let sum=0,w=0;
   Object.entries(attentionWeights).forEach(([k,wt])=>{sum+=qualitativeScore(r.dataset[k])*wt;w+=wt});
-  const raw=sum/w; // 1–5
+  const pa=programAudit[r.dataset.key];
+  if(pa){const pwt=1.50*pa.confidence;sum+=pa.score*pwt;w+=pwt}
+  const raw=sum/w; // 1–5; verified problem-solving-program evidence is a primary signal
   // Evidence quality limits confidence in a top-tier label; it does not erase intrinsic fit.
   const ev=qualitativeScore(r.dataset.evidence);
   const adjusted=raw-(ev<3?0.18:0);
@@ -490,7 +541,7 @@ function refreshAttention(r){
   cell.innerText=a.tier;
   r.dataset.attention=a.tier;
   r.dataset.attentionscore=a.score.toFixed(2);
-  cell.title='Derived attention score '+a.score.toFixed(2)+'/5 from problem importance, unresolved-gap clarity, ownership, outcomes, horizon, advisor confidence and secondary fit signals.';
+  cell.title='Derived attention score '+a.score.toFixed(2)+'/5 from problem importance, unresolved-gap clarity, ownership, outcomes, horizon, advisor confidence, audited problem-solving-program evidence (when available), and secondary fit signals.';
   cell.className='attention-tier '+(a.tier==='Highest'?'att-highest':a.tier==='High'?'att-high':a.tier==='Medium'?'att-medium':'');
 }
 function refreshAllAttention(){rows.forEach(refreshAttention)}
