@@ -10,13 +10,47 @@ A direction should make the answer to these questions feel obvious:
 2. **Problem-statement driven, not gap-hunting** — start from an important concrete problem and attempt to solve it. The attempt should expose the bottleneck, missing capability, or unknown that becomes the research question. An unexplored/novel literature gap has essentially no value by itself; ask: **what problem forced us to need this knowledge, and what becomes easier if we obtain it?**
 3. **Long-horizon depth** — can I own and investigate the problem deeply for months/years, accumulating expertise instead of repeatedly resetting context?
 4. **Objective feedback** — can I tell whether I am making progress: better prediction, explanation, control, performance, uncertainty, capability, or experimental agreement?
-5. **Ownership + closure** — do I own a substantial question and have enough time to pursue hypotheses, fail, debug, iterate, and reach meaningful closure?
+5. **Intellectual / problem ownership + closure** — do I own a substantial unresolved question, not merely the implementation or execution? I should progressively participate in deciding what hypothesis/model/experiment/analysis comes next and why, have enough time to pursue failures and surprises, and reach meaningful closure. **Hands-on ownership is not enough if somebody else owns the reasoning trajectory.**
 6. **Intellectual identity** — is the work grounded enough in physics / physical systems / mathematical or scientific reasoning / deep systems understanding to be satisfying? Pure implementation or generic software is not enough merely because it is difficult.
 7. **Method freedom** — once the problem passes the above tests, do not over-prescribe the recipe. Theory, modelling, simulation, experiments, diagnostics, statistics/inference, algorithms, C/C++, hardware, optimization, literature, or unfamiliar physics are tools to learn/use as required.
 8. **Reality loop** — prefer work that is confronted by measurements, experiments, real systems, or other hard external evidence. The familiar model → measure → discrepancy → debug → refine loop is a strong preference, not a mandatory ritual.
 9. **Worthwhile even if wrong** — after years of serious work, does the project still yield something valuable if the central hypothesis fails: important fundamental understanding, removal/clarification of a technology-blocking uncertainty, or deep transferable R&D capability?
 10. **Environment enables the work** — smart/constructive advisor or technical leadership, autonomy, psychological safety, reasonable boundaries, low enough context switching, and genuine room for deep work.
 11. **Transferable career capital** — does the work build durable technical capability and preserve credible advanced-R&D exits? C/C++/optimization/systems skills are valuable assets, but not the identity or objective by themselves.
+
+## Student-ownership test
+
+A PhD can be hands-on and still be task-driven. Distinguish:
+
+> **Implementation ownership:** I personally build/run/code/measure/analyse the assigned thing.
+
+from:
+
+> **Intellectual / problem ownership:** I understand the unresolved objective, form or refine hypotheses, choose discriminating tests/models/analyses, interpret unexpected results, and use those results to decide what should happen next.
+
+Strong pattern:
+
+> **Own problem → form hypotheses → choose probe/model/intervention → observe → interpret → change next step → accumulate understanding/capability.**
+
+Weak pattern:
+
+> **Advisor defines next task → student executes experiment/simulation/fabrication → plots result → advisor decides interpretation/next task → repeat.**
+
+This is not a demand for total independence on day one. Good supervision can be highly directive early. The test is whether **reasoning ownership grows during the PhD**.
+
+### How to filter for it
+
+Use evidence in roughly this order:
+
+1. **Student theses / defenses** — strongest scalable evidence. Look for a coherent problem, student-developed methods/models, explicit hypotheses or design decisions, unexpected results that changed subsequent work, and later chapters motivated by earlier findings.
+2. **Longitudinal student project chains** — do several years of one student's papers/projects form a causal sequence, or unrelated assigned units?
+3. **Current/former student descriptions and alumni outcomes** — useful corroboration of autonomy and technical ownership.
+4. **Project structure / facility role** — ask whether a student owns a scientific question within a large collaboration or mainly provides a diagnostic, fabrication, simulation, or operations service.
+5. **PI/lab claims about autonomy** — weak evidence unless corroborated.
+
+Positive abstract/thesis language includes **we identify, origin/mechanism, discrepancy, unexpected, motivates, therefore we test, to distinguish, limits performance, mitigate, optimize, improve, based on these results**. No keyword proves ownership; the key is whether the student's later decisions are visibly caused by earlier evidence.
+
+**Deep-profile gate:** before promoting a group to the final shortlist, verify at least one real student trajectory showing substantial and growing intellectual ownership. If evidence is absent, mark **ownership unverified** rather than assuming it from prestige or experimental intensity.
 
 ## Problem → gap rule
 
