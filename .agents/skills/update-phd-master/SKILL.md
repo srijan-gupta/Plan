@@ -298,3 +298,9 @@ After an update, report concisely:
 - commit/Pages status.
 
 Never say “fixed” solely because the file wrote successfully. Validate the relevant behavior first.
+
+## Performance-critical scientific coding axis
+
+- Maintain the separate filterable **HPC / low-level performance** column (`data-hpc`). A high rating needs project-level evidence that students develop or optimize performance-critical scientific or real-time software: profiled hot kernels, C/C++/Fortran, SIMD/vectorization, memory/cache work, GPU programming, MPI/OpenMP scaling, numerical solver implementation, and validation against physical results.
+- Merely running simulation software, using Python around a code, or listing HPC among group facilities is insufficient; mark unknown and state what needs verification. Distinguish physics/numerical ownership from pure infrastructure engineering.
+- Treat demonstrated depth as a strong transferable-skills bonus, never a hard filter for excellent experimental physics. Keep it outside weighted scores until the rubric is deliberately recalibrated. Seek new groups with this flavor, verifying PI, current affiliation, thesis route, representative papers/theses and student role before adding a full row.
