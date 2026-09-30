@@ -108,7 +108,7 @@ Transferable components:
 - model-vs-observation inference;
 - large scientific datasets.
 
-This has relevance beyond stellar astrophysics, including computational plasma/fusion and general scientific computing, although stellar MHD is not equivalent to fusion-specific kinetic/HEDP physics.
+The durable portability is primarily through computational physics, nonlinear PDE simulation, GPU/HPC, numerical modelling, and scientific inference. It is not necessary to justify this PhD through a future move to fusion.
 
 ## Current assessment
 **Research-loop fit: exceptionally strong.**
@@ -154,28 +154,32 @@ The likely unit of progress is an investigative arc rather than a rote task: und
 ### Four years: extremely worthy
 Even without assuming a lifelong stellar-astrophysics career, four years building MHD/plasma physics + numerical modelling + HPC/GPU + scientific inference is a worthwhile research problem and a deep transferable capability stack.
 
-### Decades: now plausible, still unresolved
-Previously the main concern was that HPC is a tool rather than a domain, making the long-term identity less obvious than in a technology such as fusion or optical communications.
+### Decades: increasingly plausible, still unresolved
+The key long-term question is no longer whether this can serve as a bridge to fusion. **Astrophysics itself may be the enduring domain**, with computation/HPC as the method.
 
-The newly explicit astrophysics motivation creates another legitimate long-term path:
+Fusion was attractive mainly as a means to an important end: contributing to the energy problem, with some technical overlap with my background (including ultrafast work). I do not currently have a separate intrinsic attachment to fusion. Therefore fusion transferability is optional upside, not a requirement for this PhD to make sense.
+
+Plausible long-term paths:
 - **Path A: astrophysics itself becomes the enduring domain**, with computation/HPC as the method.
-- **Path B: computational plasma/MHD becomes the bridge into fusion or another physics-intensive technology**, with HPC as a durable differentiator.
-- **Path C: scientific HPC / simulation becomes the professional identity across physical domains**, provided compensation and role quality meet requirements.
+- **Path B: scientific HPC / physical simulation becomes the professional capability across astrophysical or adjacent physical-science problems**, provided role quality and compensation are acceptable.
+- **Path C: later recombination with optics/instrumentation/computation**, if the recurring optical interest proves important.
 
-No path should yet be assumed.
+### SOP boundary
+Fusion and alternative technology missions should **not appear in the SOP/cover letter**. They are useful private comparison axes but would pollute a much stronger application narrative.
+
+The application story should remain centered on:
+**long-standing astrophysics interest -> exoplanet-habitability / stellar-environment mission -> fundamental dynamo physics -> preferred model/simulate/observe/refine loop -> physics + HPC capability recombination.**
 
 ## Long-term open questions / due diligence
 1. **Astrophysics taste:** after reading actual stellar-dynamo papers and doing some MHD, is the physics itself compelling enough to sustain years/decades?
 2. **Optics:** is the recurring attraction to optics merely historical familiarity, or an important ingredient I would miss in a non-optical plasma PhD?
-3. **Fusion bridge:** identify concrete computational-fusion roles and compare their requirements against what this PhD would produce.
-4. **Missing fusion stack:** quantify the gap in gyrokinetics, kinetic theory, fusion-device MHD, plasma-wall physics, heating/current drive, etc.
-5. **Transition cost:** could I enter fusion directly after the PhD, or would a fusion-specific postdoc be needed?
-6. **Compensation:** map post-PhD salaries in astrophysics-adjacent industry, fusion, national labs, and scientific HPC. I eventually need compensation closer to a professional/job-level salary than a prolonged low-paid academic path.
-7. **Decades of problems:** map whether stellar dynamos / stellar activity / exoplanet space weather provide a sufficiently broad sequence of deep problems rather than one narrow thesis niche.
-8. **Alumni evidence:** where have HPCLab/Korpi-Lagg trainees gone, and which skills transferred?
-9. **Implementation ownership:** how much numerical-method, GPU/kernel and low-level optimization ownership does this specific doctoral researcher get?
-10. **Scientific ownership:** does the student formulate/diagnose mechanisms, or mainly execute a consortium simulation roadmap?
-11. **Astrophysics + optics possibility:** identify later roles/research areas that could recombine astrophysics with optics/instrumentation/computation if that combination remains especially attractive.
+3. **Compensation:** map post-PhD salaries and role quality in astrophysics-adjacent industry, research labs, space/astro technology, and scientific HPC. I eventually need professional/job-level compensation rather than a prolonged low-paid academic path.
+4. **Decades of problems:** map whether stellar dynamos / stellar activity / exoplanet space weather provide a sufficiently broad sequence of deep problems rather than one narrow thesis niche.
+5. **Alumni evidence:** where have HPCLab/Korpi-Lagg trainees gone, and which skills transferred?
+6. **Implementation ownership:** how much numerical-method, GPU/kernel and low-level optimization ownership does this specific doctoral researcher get?
+7. **Scientific ownership:** does the student formulate/diagnose mechanisms, or mainly execute a consortium simulation roadmap?
+8. **Astrophysics + optics possibility:** identify later roles/research areas that could recombine astrophysics with optics/instrumentation/computation if that combination remains especially attractive.
+9. **Capability portability:** if I later change astrophysical subfield, how broadly do the MHD/numerical/HPC skills transfer?
 
 ## Revised current assessment
 - **Intrinsic domain pull:** stronger than initially recognized because astrophysics is a long-standing interest.
