@@ -110,3 +110,77 @@ Long-term identity:
 - Read 2–4 recent Korpi-Lagg papers and reference one scientific question naturally.
 - Inspect the group's simulation/code ecosystem enough to make the HPC fit concrete.
 - Decide which public code/thesis links strengthen the application.
+
+
+## 7. Personal / "romantic" fit: astronomy came first
+There is a deeper personal motivation that should be available for the SOP if it can be expressed sincerely without sounding sentimental:
+
+- Astronomy / astrophysics was my earliest scientific fascination and something I had wanted to enter long before the present PhD search.
+- I never pursued it professionally, but that interest predates the later attraction to optics.
+- Optics has repeatedly appeared in my coursework, thesis interests, and research directions, and remains an important technical taste.
+- The deeper attraction may actually be astrophysics itself. This is part of why areas such as gravitational-wave instrumentation felt unusually compelling: they combined astrophysical questions with optics and sophisticated physical systems.
+
+For this application, the useful version is not "childhood dream" rhetoric. It is: **this is not an arbitrary pivot chosen because the methods fit my CV; the scientific domain itself connects to a long-standing intrinsic interest.**
+
+This also strengthens the exoplanet-habitability motivation: the application connects a long-standing attraction to astrophysics with a concrete scientific contribution.
+
+## 8. Time-horizon alignment
+
+### Day-to-day / weeks
+Potentially extremely strong:
+- study and understand the physical model and relevant equations;
+- formulate questions/hypotheses;
+- design simulations and diagnostics;
+- design/use physics-informed ML where it is scientifically useful;
+- implement numerical/physical components;
+- run and analyse simulations;
+- profile and optimize scientific code, potentially down toward GPU/kernel/instruction-level performance;
+- compare predictions against observations;
+- diagnose discrepancies and refine the model.
+
+This is not wholly unfamiliar territory. I already have experience with model/algorithm deployment and performance-sensitive implementation, including low-level optimization, and I have a physics education that required learning mathematically intimidating physical models. The new challenge is to join those abilities in one scientific workflow.
+
+**Caution:** do not claim that instruction-level optimization will necessarily be a routine part of this exact PhD until clarified with the supervisor. The lab demonstrably does low-level GPU/HPC work, but the student's ownership of that layer remains to be established.
+
+### Months
+Strong alignment with my preferred project scale:
+**learn mechanism -> model -> implement -> design computational experiment -> run -> inspect -> debug physics/computation -> refine -> repeat.**
+
+This gives a persistent investigative arc rather than a sequence of disconnected execution tasks.
+
+### Four-year PhD
+Currently judged extremely worthwhile even if stellar dynamos do not become my permanent domain.
+
+Likely durable capabilities:
+- MHD / plasma and fluid physics;
+- nonlinear multiscale physical modelling;
+- numerical PDEs;
+- scientific simulation;
+- GPU/HPC computing;
+- model-vs-observation inference;
+- scientific ML used within a physical model;
+- deeper C/C++/performance-engineering capability.
+
+This satisfies my criterion that the PhD itself should remain worthwhile even if the original hypothesis fails or I later change domains.
+
+### Decades
+**Open — do not manufacture certainty.**
+
+Two plausible long-term stories need investigation:
+
+1. **Astrophysics becomes the domain.** This is more plausible than initially recognized because astronomy/astrophysics is a long-standing intrinsic interest, not merely a convenient application of HPC.
+2. **Computational plasma/MHD/HPC becomes the transferable platform**, with a later move into fusion or another physics-intensive technology.
+
+The second story only works for me if the transition is genuinely credible at the role level and can eventually support industry/job-level compensation.
+
+Long-horizon questions to resolve:
+- Can this training credibly lead to computational fusion/plasma roles, and which exact role families?
+- What fusion-specific physics would still be missing (gyrokinetics, kinetic plasma, reactor-specific MHD, plasma-wall interaction, etc.)?
+- Would employers value stellar-MHD + serious GPU/HPC experience directly, or require a fusion-specific postdoc/transition?
+- What well-paid industrial/scientific-HPC roles exist if I do not remain in academia?
+- What do Korpi-Lagg / HPCLab alumni actually do?
+- Could astrophysics itself sustain decades of personally meaningful work at an acceptable compensation/lifestyle?
+- Does stellar/plasma physics satisfy my scientific taste after deeper exposure, given that optics has repeatedly been the technical physics domain I have gravitated toward?
+- Is there a future niche combining astrophysics with optics/instrumentation/computation, or would this PhD move me away from the optical side I enjoy?
+
+These are career due-diligence questions, not reasons to weaken the application narrative.
