@@ -183,3 +183,44 @@ Long-horizon questions to resolve:
 - Is there a future niche combining astrophysics with optics/instrumentation/computation, or would I meaningfully miss the optical side?
 
 These are private career due-diligence questions, not material for the SOP. The SOP should stay tightly aligned with **astrophysics, stellar magnetic activity, exoplanet habitability, fundamental physics, and the physics-computation research loop**.
+
+
+## 9. Stronger alignment: a recurring modelling/simulation identity
+
+This opportunity should be understood as more strongly aligned than a simple "physics + coding" match.
+
+Across earlier career/field exploration, before this Aalto opportunity appeared, I repeatedly converged on the same desired activity:
+
+**understand a system deeply -> express the important mechanisms mathematically -> build/simulate the model -> compare predictions with reality -> use discrepancies to identify missing physics/assumptions -> refine -> repeat**
+
+Three especially persistent preferences were:
+1. **Understanding the system**, rather than merely operating a tool or executing a prescribed experiment.
+2. **Modelling and simulation** as a primary way of thinking about the system.
+3. **The investigative loop** in which observations/results feed back into understanding and model refinement.
+
+This preference was previously generalized even beyond individual physics domains: the attraction was to simulators of complex systems themselves—physical systems and, conceptually, even socioeconomic/traffic/generalized systems. Therefore the modelling/simulation attraction predates and is independent of stellar dynamos.
+
+### Why Aalto is unusually complete
+The project potentially exercises almost the whole desired stack:
+
+**stellar/plasma physics -> governing equations/model -> numerical formulation -> simulation design -> implementation -> GPU/HPC optimization -> large-scale simulation -> astronomical observation/constraints -> physical inference -> model refinement**
+
+This is stronger than merely finding a domain I like. It joins:
+- a long-standing intrinsic interest in astronomy/astrophysics;
+- the recurring desire to understand complex systems;
+- mathematical/physical modelling;
+- simulation as the main investigative instrument;
+- comparison with real observations;
+- root-cause/mechanism investigation;
+- simulator implementation and performance optimization.
+
+### Possible long-term craft
+A potentially durable professional identity is not one particular simulator or even one narrow physical domain:
+
+**computational physical-systems modeller / computational physicist who can learn a physical system, formulate a trustworthy model, simulate it efficiently, confront it with observations, and improve the model from what fails.**
+
+The aspiration can be viewed as an extended physics programme over a career: continue learning different areas of physics deeply, while accumulating a common mathematical/numerical/computational language.
+
+Important nuance: this does not mean domain expertise is effortless or that one can instantly move into any field. Each new physical system requires serious learning. The positive claim is that the underlying craft accumulates rather than resets: mathematical modelling, PDE/ODE reasoning, numerical methods, inference, simulation architecture, HPC/GPU implementation, validation, and mechanism-driven debugging recur across domains.
+
+For the SOP, this should be expressed through concrete evidence and the Aalto project itself—not as an overbroad claim that I can "simulate anything."
