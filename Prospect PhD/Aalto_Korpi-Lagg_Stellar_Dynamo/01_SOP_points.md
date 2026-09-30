@@ -19,7 +19,7 @@ For this application, keep the motivation specific:
 - Independently of the application, stellar dynamos are a compelling **fundamental-physics problem**: how nonlinear, turbulent, magnetized plasma generates coherent large-scale magnetic structure and activity.
 
 ### Important SOP discipline
-Do **not** foreground alternative missions such as fusion energy or optical communications in this application. They explain my broader career reasoning, but would dilute the case for this specific project. The cover letter should make clear why *this* scientific problem is worth pursuing on its own.
+Do **not mention fusion or optical communications as alternative missions in this application.** They belong to private career exploration, not the application narrative, and would dilute the much cleaner alignment with Korpi-Lagg's astrophysics/exoplanet mission. The cover letter should make clear why *this* scientific problem is worth pursuing on its own.
 
 ## 2. My preferred research loop
 This project closely matches how I naturally want to investigate physical problems:
@@ -166,21 +166,20 @@ This satisfies my criterion that the PhD itself should remain worthwhile even if
 ### Decades
 **Open — do not manufacture certainty.**
 
-Two plausible long-term stories need investigation:
+The most natural long-term story to test is now:
 
-1. **Astrophysics becomes the domain.** This is more plausible than initially recognized because astronomy/astrophysics is a long-standing intrinsic interest, not merely a convenient application of HPC.
-2. **Computational plasma/MHD/HPC becomes the transferable platform**, with a later move into fusion or another physics-intensive technology.
+1. **Astrophysics becomes the domain.** Astronomy/astrophysics is a long-standing intrinsic interest rather than a convenient application of HPC.
+2. **Scientific modelling/HPC remains the transferable capability layer.** It provides optionality across computational physical science if the exact astrophysical subfield changes.
 
-The second story only works for me if the transition is genuinely credible at the role level and can eventually support industry/job-level compensation.
+Fusion should **not** be treated as a required destination or justification for this PhD. Fusion was attractive primarily because the energy problem is an important mission and some technical routes intersected with my background (including ultrafast experience); I do not currently have an independent attachment to fusion as a scientific domain. Therefore a weak fusion intersection does not count against this opportunity.
 
 Long-horizon questions to resolve:
-- Can this training credibly lead to computational fusion/plasma roles, and which exact role families?
-- What fusion-specific physics would still be missing (gyrokinetics, kinetic plasma, reactor-specific MHD, plasma-wall interaction, etc.)?
-- Would employers value stellar-MHD + serious GPU/HPC experience directly, or require a fusion-specific postdoc/transition?
-- What well-paid industrial/scientific-HPC roles exist if I do not remain in academia?
+- Could astrophysics itself sustain decades of personally meaningful work?
+- Does stellar/plasma physics specifically match my scientific taste after deeper exposure?
+- Does the field offer a sufficiently broad sequence of deep problems beyond one thesis niche?
+- What research/industry roles exist after this PhD, and can they eventually provide job-level compensation without requiring a prolonged low-paid academic path?
 - What do Korpi-Lagg / HPCLab alumni actually do?
-- Could astrophysics itself sustain decades of personally meaningful work at an acceptable compensation/lifestyle?
-- Does stellar/plasma physics satisfy my scientific taste after deeper exposure, given that optics has repeatedly been the technical physics domain I have gravitated toward?
-- Is there a future niche combining astrophysics with optics/instrumentation/computation, or would this PhD move me away from the optical side I enjoy?
+- How portable are the numerical modelling, GPU/HPC and scientific-computing capabilities if the astrophysical subfield changes?
+- Is there a future niche combining astrophysics with optics/instrumentation/computation, or would I meaningfully miss the optical side?
 
-These are career due-diligence questions, not reasons to weaken the application narrative.
+These are private career due-diligence questions, not material for the SOP. The SOP should stay tightly aligned with **astrophysics, stellar magnetic activity, exoplanet habitability, fundamental physics, and the physics-computation research loop**.
