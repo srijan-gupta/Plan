@@ -186,3 +186,77 @@ The application story should remain centered on:
 - **Day-to-day research-loop fit:** exceptionally strong on paper.
 - **Four-year worth:** exceptionally strong.
 - **Decades-long career fit:** plausible in more than one way, but requires explicit career/role/salary and domain-taste due diligence.
+
+
+## Stronger fit finding: modelling/simulation is a persistent identity
+
+The Aalto opportunity initially looked like a strong intersection of physics and computation. The fit is deeper than that.
+
+Long before considering this specific PhD, my field exploration repeatedly returned to three preferences:
+
+1. **The loop:** model -> simulate/predict -> observe/compare -> diagnose discrepancy -> refine.
+2. **Understanding a system:** I want to know why a system behaves as it does, identify mechanisms/root causes, and not merely execute a fixed process.
+3. **Simulation:** I repeatedly gravitate toward constructing or using simulations as the way to make physical understanding concrete and testable.
+
+A recurring formulation was effectively:
+**"We observe some behaviour in reality; how can I model and simulate it precisely enough to understand why it occurs?"**
+
+This was not restricted to optics, communications, plasma, or astrophysics. Earlier exploration even generalized the attraction toward modelling complex systems such as physical, socioeconomic, and traffic systems. That is evidence that **modelling/simulation itself is a stable intellectual preference**, rather than an incidental tool attached to whichever field is currently being considered.
+
+### Reframing the long-term identity
+The domain may not need to remain one technology for decades. A durable identity could be:
+
+**computational physicist / physical-systems modeller**
+
+with the recurring craft:
+
+**learn the physics -> identify governing mechanisms -> formulate mathematical model -> choose/develop numerical method -> implement simulator -> make it computationally effective -> generate predictions -> compare with observation/experiment -> infer what is missing -> refine.**
+
+This provides a different kind of decades-scale continuity. The continuity is the craft of understanding and simulating physical systems; the specific physical system can evolve.
+
+### "Extended physics programme" interpretation
+One attractive career conception is to keep learning new physics deeply over time while accumulating a reusable mathematical and computational language.
+
+Recurring foundations can include:
+- differential equations and dynamical systems;
+- linear algebra;
+- Fourier/spectral methods and waves;
+- probability/statistics and inference;
+- optimization and inverse problems;
+- perturbation/stability reasoning;
+- numerical methods, approximation/error/stability;
+- parallel algorithms and scientific HPC;
+- model validation against experiment/observation.
+
+Different domains add new physics and mathematical dialects rather than necessarily resetting the entire skill stack.
+
+This is not permission to be shallow. The desired pattern is **repeated depth**: become genuinely competent in the physical system being studied, while retaining the transferable modelling/simulation machinery.
+
+### Why this materially raises Aalto alignment
+Aalto potentially combines nearly every layer in one PhD:
+
+**astrophysics / plasma physics
+-> MHD model
+-> numerical simulation
+-> C/C++ / GPU scientific computing
+-> performance optimization
+-> very large-scale runs
+-> astronomical observations
+-> physical interpretation
+-> improved model**
+
+That is unusually close to the full activity pattern identified independently in earlier career exploration.
+
+The fit therefore has multiple independent components:
+- **domain:** long-standing astronomy/astrophysics attraction;
+- **mission:** stellar environments and exoplanet habitability;
+- **physics:** unresolved nonlinear collective behaviour;
+- **method:** mathematical modelling and simulation;
+- **research loop:** prediction vs observation -> discrepancy -> mechanism -> refinement;
+- **implementation:** serious scientific software/HPC;
+- **optimization:** computational performance can expand the reachable physics.
+
+### Updated alignment assessment
+The opportunity should no longer be described merely as an unusually good four-year project. It is also a credible testbed for a possible decades-long professional craft: **learning, modelling and simulating difficult physical systems across the full physics-to-computation stack.**
+
+Remaining uncertainty is primarily whether the actual doctoral role provides enough ownership across that stack, and whether the practical post-PhD career tree supports the desired compensation and role quality.
