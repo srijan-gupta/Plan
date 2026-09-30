@@ -81,3 +81,12 @@ Use this as a rejection filter, not a personality essay: **“Yes, obviously thi
 ## Change-control rule
 
 Do not rewrite this framework around whatever preference is salient in the latest conversation. Repeated long-term evidence outranks a single recent observation. New insights should normally be additive or corrective; change a core criterion only when sustained evidence actually contradicts it.
+
+
+## Retained career direction: Computational Physical Modelling / Simulation
+
+Retained from the Aalto discussion and expanded scan, 30 September 2026. This is a top-level direction independent of a single domain: physical question → governing model → numerical method → scientific implementation → performance/HPC → simulation → external evidence → diagnose/refine. Domain changes require new depth; the mathematical, numerical and implementation craft can compound across decades.
+
+Separate physics/problem ownership, model/numerical ownership, code ownership, performance ownership and validation. Strong evidence on one does not imply the others. This direction is an additive application of the governing filter, not a replacement of experimental physics or optical systems.
+
+Named comparison set and primary sources: `computational_physical_modelling.html`; corresponding complete rows are in canonical `index.html`. Research rows remain Moderate/Preliminary pending student trajectories. Career references include NVIDIA's High-Fidelity Physics team (Museth, Daviet, Sawhney), Daviet's Inria→Weta→NVIDIA trajectory, and Lam Research's feature-scale plasma-process simulation role (France, requisition 203973).
