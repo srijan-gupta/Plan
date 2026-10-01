@@ -1,5 +1,21 @@
 # Revision history
 
+## 2.3 — 1 October 2026
+
+Corrective audit of v2.2. Its claim of full compliance was too strong: the log had been split out, permanent directives condensed, and August evidence omitted.
+
+| Change | Classification | Evidence / reason |
+|---|---|---|
+| Restore embedded log and original standing directives | Framework refinement | Correct deviation from the governing structure; no redesign of the reasoning architecture. |
+| Append model-centric reasoning and rejection of R&D labels | Strengthened evidence | E14 |
+| Append scholarly mastery and concrete wonder uncertainty | Strengthened evidence | E15 |
+| Preserve low photonics engagement as contrary evidence | New observation | E16 |
+| Applying existing knowledge is acceptable | Strengthened evidence | E17 |
+| Explicit maths/HPC soft preferences | Framework refinement | E18 |
+| Explicit project exclusions and environment requirements | Framework refinement | E19 |
+| Separate stable working assumptions from untested hypotheses | Framework refinement | Confidence in preference is not demonstrated research fit. |
+| Disclose incomplete historical retrieval | Framework refinement | Full-history completeness cannot be certified. |
+
 ## 2.2 — 1 October 2026
 
 Imported the July baselines into GitHub and resumed holistic maintenance. Phase 2 remains active; no architecture change or phase completion is claimed.

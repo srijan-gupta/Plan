@@ -112,6 +112,61 @@ Updated 1 October 2026. Evidence below comes from the preserved July documents a
 
 **Interpretation:** durable expertise and outcome responsibility matter, but no immunity claim is supported. **Confidence:** High for the concern, Low for future labour-market conclusions. **Implication:** assess actual learning/ownership opportunities; keep forecasts separate from identity evidence. **Revision trigger:** observed changes in scientific workflows and hiring, not reassuring labels.
 
+
+## August and earlier corrections recovered in the audit
+
+### E14 — Model-building, not an occupational label
+
+**Source:** Field discussion, 5 August 2026, retrieved historical context.
+
+**Observation:** reported naturally building mathematical/system models, mentally simulating, predicting and optimizing; explicitly rejected optimizing for “R&D” as a label. Wanted one significant problem solved deeply over years.
+
+**Interpretation:** model-centric reasoning precedes occupational choice. **Confidence:** High as a stated preference supported by E01/E05. **Framework implication:** judge actual problem structure rather than title. **Decision implication:** industrial R&D, PhD and systems engineering can each fit or fail. **Revision trigger:** sustained model-building proves less satisfying than execution in practice.
+
+### E15 — Scholarship, wonder and specific fascination
+
+**Source:** Field discussion, 2 August 2026, retrieved historical context; gaps remain within the original discussion.
+
+**Observation:** valued scholarly mastery, deep understanding, months-long experimentation and low context switching; named light/optics and light–matter interaction as immediate objects of wonder. The specific enduring phenomenon/problem remained unresolved.
+
+**Interpretation:** mastery and beautiful explanation are attractions; a broad domain label does not establish lasting curiosity. **Confidence:** Medium for domain fascination, High for expressed mastery/depth preference. **Framework implication:** distinguish work style, wonder and concrete problem interest. **Decision implication:** avoid certifying photonics solely from romantic attraction. **Revision trigger:** repeated voluntary engagement with a specific problem or sustained loss of curiosity.
+
+### E16 — Framework fit versus behavioural engagement
+
+**Source:** Field discussion, 25 August 2026, retrieved historical context.
+
+**Observation:** reported little motivation to pursue photonics despite extensive framework-building and limited behavioural sampling. Accepted separating low-obligation exploration from commitment and execution, with less guilt-driven exploration.
+
+**Interpretation:** an attractive conceptual fit is insufficient evidence of actual engagement. **Confidence:** High for the reported episode; Medium for generalization. **Framework implication:** use curiosity/flow samples and contrary evidence, not only consistency with stated preferences. **Decision implication:** photonics remains provisional; test the work before commitment. **Alternative / revision trigger:** fatigue, workload or unclear next actions could explain low engagement; repeated low-friction sampling can discriminate this.
+
+### E17 — Existing knowledge is an acceptable tool
+
+**Source:** Field discussion, 20 July 2026, retrieved historical context.
+
+**Observation:** accepted one hard, beautiful, intellectually demanding problem as motivating; applying existing knowledge was acceptable. Whether pure research or technology creation fits better remained uncertain.
+
+**Interpretation:** problem-solving matters more than whether knowledge is newly discovered. **Confidence:** High for stated principle, reinforced by E09. **Framework implication:** fundamental research is neither compulsory nor disqualifying. **Decision implication:** compare scientific and technological routes by the important question and ownership. **Revision trigger:** real work consistently reveals an independent need for novelty/discovery.
+
+### E18 — Method preferences are subordinate, not gates
+
+**Source:** explicit corrections, 27 September 2026 (applied maths), 28–29 September (HPC good to have), available retrieved Field context.
+
+**Observation:** applied maths/inference/estimation should guide or break ties, not veto compelling physics; PDE maths was not the stated attraction. Low-level HPC/performance was good to have, not required.
+
+**Interpretation:** familiar methods support fit without defining eligibility. **Confidence:** High for explicit instruction. **Framework implication:** keep these axes secondary. **Decision implication:** do not prune worthwhile physics for absence of kernel optimization or preferred maths. **Revision trigger:** explicit user revision backed by experience.
+
+### E19 — Scope exclusions and enabling environment
+
+**Source:** 2 August 2026 fabrication/materials guardrail, retrieved historical context; standing Field criteria in available project context, consolidated 1 October 2026.
+
+**Observation:** systems/modelling/signals/optimization were preferred over fabrication/materials-centric paths. Current exclusions include camera-quality topics, gravitational physics and directionless Floquet work. Constructive mentorship, autonomy, psychological safety and boundaries are recurring work requirements.
+
+**Interpretation:** hands-on work is welcome when it enables investigation; fabrication/operations should not dominate the role. **Confidence:** High for expressed guardrails; each environment remains unverified. **Framework implication:** retain named scope exclusions separately from broad transferable identity. **Decision implication:** screen projects and actual student work, not field labels alone. **Revision trigger:** explicit preference change or a project whose actual daily work avoids the excluded scope.
+
 ## Evidence limits
 
 Most recent entries are direct expressed preferences and discussion-based interpretations. They are not equivalent to multi-year research experience. No unverified CV performance numbers, laboratory claims or salary estimates are used to strengthen the identity model. Confidence should increase through independent experiences and discriminating tests, not repetition of the same discussion.
+
+## Historical coverage limit
+
+This release integrates the preserved July baseline, available project context and retrieved August–October findings. Retrieval is partial: some conversations and full reasoning chains were not recovered. Nineteen entries are not evidence that every historical discovery has been captured. Future recovered evidence must be appended and integrated holistically, with its original date, without inventing missing observations.

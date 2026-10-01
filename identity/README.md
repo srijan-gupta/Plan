@@ -2,8 +2,8 @@
 
 The reasoning model lives here; career choices are its outputs.
 
-- [Current complete model — v2.2, 1 October 2026](Intellectual_Identity_and_Life_Direction.md)
-- [Evidence register](evidence_register.md)
+- [Current complete model — v2.3, 1 October 2026](Intellectual_Identity_and_Life_Direction.md)
+- [Embedded evidence register](Intellectual_Identity_and_Life_Direction.md#evidence-register--complete-embedded-log) — [generated reading copy](evidence_register.md)
 - [Revision history](CHANGELOG.md)
 - [Preserved July baselines](archive/)
 - [Operational research filter](../research_decision_framework.md)
@@ -26,3 +26,5 @@ When a Field discussion changes identity, motivation, work structure or a durabl
 Do not promote a career hypothesis to identity, infer student ownership from prestige, or replace stable criteria with the latest enthusiasm. Missing evidence remains unknown. Do not add sensitive personal details merely because they are available; this repository is public.
 
 This protocol governs future authorized Field updates when this repository is used. It is not a background sync service or an automatic update schedule.
+
+The full evidence log and standing directives are embedded in the canonical document. Update that document first; regenerate the companion evidence reading copy from it. Preserve prior evidence entries and append corrections with dates. Record historical coverage limits; never label an update exhaustive without a source-by-source coverage audit. See [the v2.3 maintenance audit](maintenance_audit.md).
