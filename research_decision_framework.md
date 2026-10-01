@@ -90,3 +90,25 @@ Retained from the Aalto discussion and expanded scan, 30 September 2026. This is
 Separate physics/problem ownership, model/numerical ownership, code ownership, performance ownership and validation. Strong evidence on one does not imply the others. This direction is an additive application of the governing filter, not a replacement of experimental physics or optical systems.
 
 Named comparison set and primary sources: `computational_physical_modelling.html`; corresponding complete rows are in canonical `index.html`. Research rows remain Moderate/Preliminary pending student trajectories. Career references include NVIDIA's High-Fidelity Physics team (Museth, Daviet, Sawhney), Daviet's Inria→Weta→NVIDIA trajectory, and Lam Research's feature-scale plasma-process simulation role (France, requisition 203973).
+
+## Problem-led focus and considered-candidate history — 1 October 2026
+
+> **Owner of a difficult real problem who is willing and able to descend all the way into fundamental research when the problem demands it.**
+
+Start from the important problem and attempted solution. The blocking uncertainty can concern a physical mechanism, a model, numerical method, measurement, architecture or performance. Fundamental research is welcome when it serves that problem. Do not confuse this with selecting an unexplored literature corner first and attaching an application afterward. Methods researchers, applied mathematicians and systems/performance architects remain eligible; low physics content by itself does not establish a failure of problem-directedness.
+
+Maintain the screening decisions in `considered_candidates.json`, with an append-only dated history for every considered group, project or direction. The last appended decision wins when dates tie. The register can grow beyond the master table: a scoped rejected project may have a `parent_key`, and future near-fits need not be added as full master rows.
+
+Use these distinct dispositions:
+
+- **Retained problem-led:** a concrete problem-solving direction survives the screen. This does not certify supervision, student autonomy, funding or admissions access.
+- **Conditional project:** a plausible aligned route exists, but portfolio/project selection or a specific fit condition remains unresolved.
+- **Evidence pending:** insufficient evidence to assess the chain. Missing evidence is not a rejection.
+- **Pruned fit:** a specified screened scope fails a named criterion or explicit user exclusion. Record what aligned, exact reason, scope, confidence, evidence and what would justify reconsideration. Do not generalize a project rejection to an entire group.
+- **Reference only:** an ecosystem, facility or exemplar remains useful, but an actionable named doctoral route has not been established.
+
+The master defaults to Retained problem-led; all original rows and personal comments/categories remain accessible. Keep intrinsic scores and weights separate from eligibility: a high numerical score cannot override a failed filter. Conditional/evidence-pending/reference statuses limit attention until diligence resolves the specific issue.
+
+For future updates, append decisions rather than overwriting a prior rejection. Label carried-forward source links as prior evidence; only give a fresh checked date to sources actually checked. Reconstruct student theses before asserting intellectual ownership. Run `python apply_screening.py` and `python build_considered_register.py` after editing the JSON, then validate master-row coverage, unchanged cell alignment, status/score filters, links and the register's history. `considered_candidates.html` displays live JSON when hosted and an embedded snapshot when opened alone.
+
+Initial pass: direction-level triage of the existing database, not a completed thesis audit of all candidates. Preserve uncertainty explicitly. The screened phase-exploration-only Floquet route is rejected under the user's explicit exclusion; Dutt's broader quantum/sensing/computing routes remain conditional. Computer-system groups that demonstrably solve engineering problems must not be labelled gap-driven merely because the preferred physical-science project has not been identified.
