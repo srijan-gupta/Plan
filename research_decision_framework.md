@@ -112,3 +112,12 @@ The master defaults to Retained problem-led; all original rows and personal comm
 For future updates, append decisions rather than overwriting a prior rejection. Label carried-forward source links as prior evidence; only give a fresh checked date to sources actually checked. Reconstruct student theses before asserting intellectual ownership. Run `python apply_screening.py` and `python build_considered_register.py` after editing the JSON, then validate master-row coverage, unchanged cell alignment, status/score filters, links and the register's history. `considered_candidates.html` displays live JSON when hosted and an embedded snapshot when opened alone.
 
 Initial pass: direction-level triage of the existing database, not a completed thesis audit of all candidates. Preserve uncertainty explicitly. The screened phase-exploration-only Floquet route is rejected under the user's explicit exclusion; Dutt's broader quantum/sensing/computing routes remain conditional. Computer-system groups that demonstrably solve engineering problems must not be labelled gap-driven merely because the preferred physical-science project has not been identified.
+
+
+## Observability and investigation capability — 1 October 2026
+
+The maintained intellectual-identity model and evidence register now live in `identity/`. Read `identity/README.md` for the standing update protocol and `identity/Intellectual_Identity_and_Life_Direction.md` for the current complete model.
+
+A strengthened preference is **observability before optimization**: expose relevant state, establish trustworthy measurements and rich diagnostics, then make hypothesis testing easy. Investigating tool limits and building probes can be part of owning the real problem. Assess whether diagnostics enable discriminating tests and change the next scientific or engineering decision. This is a fit signal, not a new hard gate or a requirement that every project follow the same workflow. Infrastructure effort should serve the unresolved problem.
+
+Long-term contribution and daily objective feedback are separate: a measurable target still needs to matter, and an important mission still needs coherent student ownership. Do not infer strong mission fit merely from an attractive computational workflow.
