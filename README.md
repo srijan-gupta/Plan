@@ -2,6 +2,7 @@
 
 - [Intellectual identity and life direction](identity/README.md) — current model, evidence, archived baselines and maintenance protocol.
 - [Research / career decision filter](research_decision_framework.md)
+- [Focused PhD directions — October 2026](focused_phd_directions.html) — selected optical systems, adaptive optics and fusion/plasma routes, with application status and unresolved checks.
 - [PhD and research group database](index.html)
 - [Considered candidates and rejection history](considered_candidates.html)
 - [Computational physical modelling](computational_physical_modelling.html)
